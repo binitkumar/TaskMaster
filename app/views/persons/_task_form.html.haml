@@ -1,0 +1,10 @@
+= simple_form_for(Task.new, url: add_task_person_path(@person) ) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = hidden_field_tag :person_id, @person.id
+    = f.text_field :title, class: 'form-control', placeholder: 'Task name'
+    = text_area_tag :detail,'', class: 'form-control', placeholder: 'Details'
+
+  .form-actions
+    = f.button :submit, style:"display: none", id: 'save_task'

@@ -2,9 +2,9 @@
   = f.error_notification
 
   .form-inputs
-    = f.hidden_field :organization_id, value: @organization.id
+    = hidden_field_tag :organization_id, value: @organization.id
     = f.text_field :title, class: 'form-control', placeholder: 'Task name'
-    = text_field_tag :detail,'', class: 'form-control', placeholder: 'Details'
+    = text_area_tag :detail,'', class: 'form-control', placeholder: 'Details'
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, style: 'display: none', id: 'save_task'

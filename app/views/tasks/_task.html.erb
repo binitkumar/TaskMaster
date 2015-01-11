@@ -2,7 +2,7 @@
   <td class="  sorting_1"><%= task.title %></td>
   <td class=" "> 
     <ul class="<%= dom_id task %>" >
-      <%= "<li></li>" if task.task_details.length == 0 %>
+      <%= "<li></li>".html_safe if task.task_details.length == 0 %>
       <% task.task_details.each do |detail| %>
          <li><%= detail.details %></li>
       <% end %>

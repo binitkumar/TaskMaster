@@ -24,3 +24,6 @@
 .option:hover, .active {
     background: lightblue;
 }
+.ui-autocomplete{
+    z-index: 1000; 
+}

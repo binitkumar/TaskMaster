@@ -1,0 +1,33 @@
+<section class="wrapper site-min-height">
+              <!-- page start-->
+              <section class="panel">
+                  <div class="panel-body">
+                      <div class="adv-table editable-table ">
+                          <div class="space15"></div>
+                          <table id="editable-sample" class="table table-striped table-hover table-bordered dataTable task-index" aria-describedby="editable-sample_info" style="width: 1051px;">
+                              <thead>
+                              <tr role="row">
+                                <th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" style="width: 177px;" aria-label="Username">Task name</th>
+                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="editable-sample" rowspan="1" colspan="1" style="width: 259px;" aria-label="Full Name: activate to sort column ascending">Task details</th></tr>
+                              </thead>
+                              
+                              <tbody role="alert" aria-live="polite" aria-relevant="all" id="tasks-index">
+                                <% @person.tasks.order("task_order").each do |task| %>
+                                  <%= render "tasks/task", task: task %>
+                                <% end %>
+                          </tbody>
+                      </table>
+                  </div>
+              </section>
+              <!-- page end-->
+          </section>
+<script>
+$(document).ready(function(){
+  $("#editable-sample tbody").sortable({
+    update: function( event, ui ) {
+        var sorted = $("#editable-sample tbody").sortable( "toArray" );
+        $.post( "/organizations/<%= @person.id %>/update_order",{ 'tasks': sorted});
+    }
+  });
+});
+</script>

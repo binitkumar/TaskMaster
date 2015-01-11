@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :persons do
+    collection do
+      get :tags
+    end
+    member do
+      post :add_task
+    end
+  end
 
   resources :organizations do
     member do
@@ -17,6 +25,8 @@ Rails.application.routes.draw do
 
   devise_for :users
   get 'home/index'
+  get 'home/contacts'
+  get 'home/navigation'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
