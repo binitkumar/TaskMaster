@@ -16,4 +16,8 @@
 //= require twitter/bootstrap
 //= require cocoon
 //= require turbolinks
+//= require jquery.fieldselection
+//= require jquery.scrollTo
+//= require jquery.tagmate
+//= require tagmate
 //= require_tree .

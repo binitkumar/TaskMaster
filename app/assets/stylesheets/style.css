@@ -8,3 +8,19 @@
   margin-top: 5px;
   font-size: 20px;
 }
+.hilite{
+  background: lightblue;
+}
+.menu {
+    overflow: auto;
+    max-height: 54px;
+    width: 400px;
+    background: #EEE;
+}
+.option {
+    background: #EEE;
+    padding: 3px;
+}
+.option:hover, .active {
+    background: lightblue;
+}

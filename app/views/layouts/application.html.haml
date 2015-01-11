@@ -30,10 +30,8 @@
         .navbar-collapse.collapse.navbar-responsive-collapse
           .search-bar.row
             .col-md-3.col-md-offset-3
-              = form_tag '/home/search', class: 'form-horizontal' do
-                = text_field_tag :key, "", class: 'rounded-search-bar'
-                = submit_tag "Search"
-                = link_to "<icon class='fa fa-plus'></i>".html_safe, "#", :class=> 'pull-right add-org', "data-toggle".to_sym => "modal", "data-target".to_sym => "#myModal"
+              = text_field_tag :key, "", class: 'rounded-search-bar'
+              = link_to "<icon class='fa fa-plus'></i>".html_safe, "#", :class=> 'pull-right add-org', "data-toggle".to_sym => "modal", "data-target".to_sym => "#myModal"
     .container
       .row
         .col-lg-9
