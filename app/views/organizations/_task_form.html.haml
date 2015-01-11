@@ -2,7 +2,7 @@
   = f.error_notification
 
   .form-inputs
-    = hidden_field_tag :organization_id, value: @organization.id
+    = hidden_field_tag :organization_id, @organization.id
     = f.text_field :title, class: 'form-control', placeholder: 'Task name'
     = text_area_tag :detail,'', class: 'form-control', placeholder: 'Details'
 

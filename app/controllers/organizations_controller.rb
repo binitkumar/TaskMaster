@@ -19,12 +19,13 @@ class OrganizationsController < ApplicationController
   end
   
   def add_task
-    @organiation = Organization.find params[:task][:organization_id]
+    @organization = Organization.find params[:organization_id]
     @task = Task.new(task_params)
     @task.user = current_user
+    @task.organization = @organization
     if @task.save
-      if params[:task_detail]
-        @details = @task.task_details.build(details: params[:task_detail])
+      if params[:detail]
+        @details = @task.task_details.build(details: params[:detail])
         @details.save
       end
     else
