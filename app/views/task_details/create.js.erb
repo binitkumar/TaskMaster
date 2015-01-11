@@ -1,0 +1,9 @@
+$(document).ready(function(){
+  <% if @task_detail.errors.blank? %>
+    $(".task_<%=@task_detail.task.id %> li:last").append( '<%= j render "task_detail", { task_detail: @task_detail } %>' );
+    $("#task_<%=@task_detail.task.id %>_textarea").val(""); 
+  <% else %>
+    $.jGrowl("<%= j errors_js_view @task_detail %>", {sticky: true, position: "center" , header: "Please fix below things" }); 
+  <% end %>
+})
+

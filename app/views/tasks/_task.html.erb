@@ -1,0 +1,17 @@
+<tr class="even" id="task_<%= task.id %>">
+  <td class="  sorting_1"><%= task.title %></td>
+  <td class=" "> 
+    <ul class="<%= dom_id task %>" >
+      <%= "<li></li>" if task.task_details.length == 0 %>
+      <% task.task_details.each do |detail| %>
+         <li><%= detail.details %></li>
+      <% end %>
+        <%= simple_form_for [task, task.task_details.build ], remote: true do |f| %>
+          <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
+          <%= f.hidden_field :task_id, value: task.id %>          
+          <%= f.text_area :details, onkeydown: "if (event.keyCode == 13) { $('#save_details_#{task.id}').click(); return false; }", id: "task_#{task.id}_textarea" %>         
+          <%= f.submit "Save" , id: "save_details_#{task.id}", style: 'display: none;' %> 
+        <% end %>
+    </ul>
+  </td>
+</tr>

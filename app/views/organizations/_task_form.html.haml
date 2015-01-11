@@ -1,0 +1,10 @@
+= simple_form_for(Task.new, url: add_task_organization_path(@organization) ) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.hidden_field :organization_id, value: @organization.id
+    = f.text_field :title, class: 'form-control', placeholder: 'Task name'
+    = text_field_tag :detail,'', class: 'form-control', placeholder: 'Details'
+
+  .form-actions
+    = f.button :submit

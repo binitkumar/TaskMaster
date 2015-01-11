@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Details:
+  = @task_detail.details
+
+= link_to 'Edit', edit_task_detail_path(@task_detail)
+\|
+= link_to 'Back', task_details_path

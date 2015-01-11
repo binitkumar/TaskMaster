@@ -1,0 +1,15 @@
+= simple_form_for(Organization.new) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.text_field :name, class: 'form-control', placeholder: 'Organization name'
+    = f.text_field :products, class: 'form-control', placeholder: 'Products/services'
+  %h3 Persons
+  #persons
+    = f.simple_fields_for :persons do |person|
+      = render 'person_fields', :f => person
+    .links
+      = link_to_add_association 'add person', f, :persons
+
+  .form-actions
+    = f.button :submit
