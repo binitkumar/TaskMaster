@@ -8,10 +8,10 @@
 .row
   .col-sm-12
     .col-sm-2 Open Items
-    .col-sm-2 By persons involved
-    .col-sm-2 By goal
+    /.col-sm-2 By persons involved
+    /.col-sm-2 By goal
     .col-sm-2
-      = link_to "<icon class='fa fa-plus'></i>".html_safe, "#", :class=> 'pull-left add-task', "data-toggle".to_sym => "modal", "data-target".to_sym => "#personTaskModal"
-= render 'shared/person_task_form'
+      =# link_to "<icon class='fa fa-plus'></i>".html_safe, "#", :class=> 'pull-left add-task', "data-toggle".to_sym => "modal", "data-target".to_sym => "#personTaskModal"
+/= render 'shared/person_task_form'
 .row
   =render 'person_tasks'

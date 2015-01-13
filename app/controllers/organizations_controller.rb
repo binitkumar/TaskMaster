@@ -24,14 +24,13 @@ class OrganizationsController < ApplicationController
     @task.user = current_user
     @task.organization = @organization
     if @task.save
-      if params[:detail]
-        @details = @task.task_details.build(details: params[:detail])
+      if params[:task_detail]
+        @details = @task.task_details.build(details: params[:task_detail])
         @details.save
       end
     else
       flash[:notice] = "Failed to add task"
     end
-    redirect_to @task.organization
   end
 
   def index

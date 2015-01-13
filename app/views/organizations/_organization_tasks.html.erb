@@ -8,7 +8,16 @@
                               <thead>
                               <tr role="row">
                                 <th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" style="width: 177px;" aria-label="Username">Task name</th>
-                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="editable-sample" rowspan="1" colspan="1" style="width: 259px;" aria-label="Full Name: activate to sort column ascending">Task details</th></tr>
+                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="editable-sample" rowspan="1" colspan="1" style="width: 259px;" aria-label="Full Name: activate to sort column ascending">Task details</th>
+                                <tr class="odd">
+                                  <%= simple_form_for Task.new, url: add_task_organization_path(@organization), remote: true do |f| %>
+                                  <%= hidden_field_tag :organization_id, @organization.id %>
+                                  <td class=" sorting_1"><%= f.text_field :title, class: 'form-control small' %></td>
+                                  <td class=""><input name="task_detail" type="text" value="" class="form-control small", onkeydown= "if (event.keyCode == 13) { $('#save_org_task').click(); return false; }"  >
+                                  <%= f.submit "Save", style: 'display: none', id: 'save_org_task' %>
+                                  </td>
+                                  <% end %>
+                                </tr>
                               </thead>
                               
                               <tbody role="alert" aria-live="polite" aria-relevant="all" id="tasks-index">

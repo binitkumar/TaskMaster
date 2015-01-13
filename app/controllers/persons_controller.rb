@@ -18,17 +18,13 @@ class PersonsController < ApplicationController
     @task = Task.new(task_params)
     @task.user = current_user
     if @task.save
-      if params[:detail]
-        @details = @task.task_details.build(details: params[:detail])
+      if params[:task_detail]
+        @details = @task.task_details.build(details: params[:task_detail])
         @details.save
       end
       @person.tasks.push @task
       @person.save
-    else
-      flash[:notice] = "Failed to add task"
     end
-    redirect_to @person
-
   end
   private
     def task_params
