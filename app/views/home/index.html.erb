@@ -1,37 +1,45 @@
 <section class="wrapper site-min-height">
-              <!-- page start-->
-              <section class="panel">
-                  <header class="panel-heading">
-                     Open Items 
-                  </header>
-                  <div class="panel-body">
-                      <div class="adv-table editable-table ">
-                          <div class="space15"></div>
-                          <table id="editable-sample" class="table table-striped table-hover table-bordered dataTable task-index" aria-describedby="editable-sample_info" style="width: 1051px;">
-                              <thead>
-                              <tr role="row">
-                                <th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" style="width: 177px;" aria-label="Username">Task name</th>
-                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="editable-sample" rowspan="1" colspan="1" style="width: 259px;" aria-label="Full Name: activate to sort column ascending">Task details</th>
-                                <tr class="odd">
-                                  <%= simple_form_for @task, remote: true do |f| %>
-                                  <td class=" sorting_1"><%= f.text_area :title, class: 'form-control small', onkeydown: "if (event.keyCode == 13) { $('#save_task').click(); return false; }" %></td>
-                                  <td class=""><textarea name="task_detail" class="form-control small", onkeydown= "if (event.keyCode == 13) { $('#save_task').click(); return false; }"  ></textarea>
-                                  <%= f.submit "Save", style: 'display: none', id: 'save_task' %>
-                                  </td>
-                                  <% end %>
-                                </tr>
-                              </thead>
-                              
-                              <tbody role="alert" aria-live="polite" aria-relevant="all" id="tasks-index">
-                                <% @tasks.each do |task| %>
-                                  <%= render "tasks/task", task: task %>
-                                <% end %>
-                          </tbody>
-                      </table>
-                  </div>
-              </section>
-              <!-- page end-->
-          </section>
+        <!-- page start-->
+        <section class="panel">
+            <header class="panel-heading">
+               Open Items 
+            </header>
+            <div class="panel-body">
+                <div class="adv-table editable-table ">
+                    <div class="space15"></div>
+                    <table id="editable-sample" class="table table-striped table-hover table-bordered dataTable task-index" aria-describedby="editable-sample_info" style="width: 1051px;">
+                        <thead>
+                        <tr role="row">
+                          <th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" style="width: 177px;" aria-label="Username">Task name</th>
+                          <th class="sorting" role="columnheader" tabindex="0" aria-controls="editable-sample" rowspan="1" colspan="1" style="width: 259px;" aria-label="Full Name: activate to sort column ascending">Task details</th>
+                          <th style="width: 30px;"></th>
+                          </tr>
+                          
+                          <tr class="odd">
+                            <%= form_for @task, remote: true do |f| %>
+                            <%= f.hidden_field :title %>
+                            <%= hidden_field_tag :task_detail %>
+                            <td><textarea name="title_dup" class= 'form-control small' 
+                              onkeydown="if (event.keyCode == 13) { $('#task_tag').trigger('change');$('#task_title').val( $('#task_tag').val() ); $('#task_detail').val( $('#detail_tag').val() ); $('#save_task').click(); }" id="task_tag"></textarea>
+                            </td>
+                            <td><textarea name="task_detail_dup" class="form-control small" onkeydown="if (event.keyCode == 13) { $('#detail_tag').trigger('change'); $('#task_title').val( $('#task_tag').val() ); $('#task_detail').val( $('#detail_tag').val() ); $('#save_task').click(); return false; }" id="detail_tag"></textarea>
+                            <%= f.submit "Save", id: 'save_task', style: 'display: none' %>
+                            </td>
+                            <% end %>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        
+                        <tbody role="alert" aria-live="polite" aria-relevant="all" id="tasks-index">
+                          <% @tasks.each do |task| %>
+                            <%= render "tasks/task", task: task %>
+                          <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <!-- page end-->
+    </section>
 <script>
 $(document).ready(function(){
   $("#editable-sample tbody").sortable({

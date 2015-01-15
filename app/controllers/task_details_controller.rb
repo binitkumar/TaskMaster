@@ -32,7 +32,7 @@ class TaskDetailsController < ApplicationController
 
   def destroy
     @task_detail.destroy
-    respond_with(@task_detail)
+    redirect_to :back
   end
 
   private

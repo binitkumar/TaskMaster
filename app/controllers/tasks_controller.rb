@@ -35,12 +35,16 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
-    @task.user = current_user
-    @task.save
-    if params[:task_detail]
-      @details = @task.task_details.build(details: params[:task_detail])
-      @details.save
+    if params[:task][:title] || params[:task_detail]
+      @task = Task.new(title: params[:task][:title])
+      @task.user = current_user
+      @task.save
+      if params[:task_detail]
+        @details = @task.task_details.build(details: params[:task_detail])
+        @details.save
+      end
+    else
+      @task = Task.new
     end
   end
 
@@ -51,7 +55,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    respond_with(@task)
+    redirect_to :back
   end
 
   private

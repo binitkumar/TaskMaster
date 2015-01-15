@@ -9,14 +9,26 @@
                               <tr role="row">
                                 <th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" style="width: 177px;" aria-label="Username">Task name</th>
                                 <th class="sorting" role="columnheader" tabindex="0" aria-controls="editable-sample" rowspan="1" colspan="1" style="width: 259px;" aria-label="Full Name: activate to sort column ascending">Task details</th>
+                                <th style="width:30px;"></th>
+                                </tr>
                                 <tr class="odd">
-                                  <%= simple_form_for Task.new, url: add_task_organization_path(@organization), remote: true do |f| %>
-                                  <%= hidden_field_tag :organization_id, @organization.id %>
-                                  <td class=" sorting_1"><%= f.text_area :title, class: 'form-control small', onkeydown: "if (event.keyCode == 13) { $('#save_org_task').click(); return false; }" %></td>
-                                  <td class=""><textarea name="task_detail" class="form-control small", onkeydown= "if (event.keyCode == 13) { $('#save_org_task').click(); return false; }"  ></textarea>
-                                  <%= f.submit "Save", style: 'display: none', id: 'save_org_task' %>
-                                  </td>
-                                  <% end %>
+
+                            <%= form_for Task.new, url: add_task_organization_path(@organization), remote: true do |f| %>
+                            <%= hidden_field_tag :organization_id, @organization.id %>
+                            <%= f.hidden_field :title %>
+                            <%= hidden_field_tag :task_detail %>
+                            <td><textarea name="title_dup" class= 'form-control small' 
+                              onkeydown="if (event.keyCode == 13) { $('#task_tag').trigger('change');$('#task_title').val( $('#task_tag').val() ); $('#task_detail').val( $('#detail_tag').val() ); $('#save_task').click(); }" id="task_tag"></textarea>
+                            </td>
+                            <td><textarea name="task_detail_dup" class="form-control small" onkeydown="if (event.keyCode == 13) { $('#detail_tag').trigger('change'); $('#task_title').val( $('#task_tag').val() ); $('#task_detail').val( $('#detail_tag').val() ); $('#save_task').click(); return false; }" id="detail_tag"></textarea>
+                            <%= f.submit "Save", id: 'save_task', style: 'display: none' %>
+                            </td>
+                            <% end %>
+                            <th></th>
+
+
+
+
                                 </tr>
                               </thead>
                               

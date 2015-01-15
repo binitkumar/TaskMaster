@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :task_details
   resources :tasks do
     resources :task_details
 

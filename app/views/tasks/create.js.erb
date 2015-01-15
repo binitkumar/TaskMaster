@@ -1,7 +1,7 @@
 $(document).ready(function(){
   <% if @task.errors.blank? %>
     $(".task-index tbody").prepend( '<%= j render "task", { task: @task } %>' );
-    $("input:text").val(""); 
+    $("textarea").val(""); 
   <% else %>
     $.jGrowl("<%= j errors_js_view @task %>", {sticky: true, position: "center" , header: "Please fix below things" }); 
   <% end %>

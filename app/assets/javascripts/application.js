@@ -16,7 +16,6 @@
 //= require jquery-ui/autocomplete
 //= require twitter/bootstrap
 //= require cocoon
-//= require turbolinks
 //= require browser
 //= require underscore-min
 //= require lodash

@@ -6,7 +6,7 @@ class Task < ActiveRecord::Base
   has_many :task_details, ->{ order("created_at asc") }
 
 
-  before_save :associate_users
+  after_create :associate_users
 
   def associate_users
     persons = Array.new
@@ -16,20 +16,15 @@ class Task < ActiveRecord::Base
       end
     end
     persons.each do |pers|
-      if self.title.match(/#{pers.name}/)
+      if self.title && self.title.match(/#{pers.name}/)
         begin
-          self.task.persons.push pers
+          pers.tasks.push self
         rescue => exp
-
+          puts exp.message
         end
       end
     end
     self.title.gsub!(/\@\[\[\d\:\:/," ") 
     self.title.gsub!(/\]\]/, " ") 
-    begin 
-      self.task.save 
-    rescue => exp
-
-    end
   end
 end

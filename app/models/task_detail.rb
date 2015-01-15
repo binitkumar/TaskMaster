@@ -13,7 +13,7 @@ class TaskDetail < ActiveRecord::Base
       end
     end
     persons.each do |pers|
-      if self.details.match(/#{pers.name}/)
+      if self.details && self.details.match(/#{pers.name}/)
         begin
           self.task.persons.push pers
         rescue => exp
